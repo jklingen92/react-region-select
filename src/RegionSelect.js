@@ -131,7 +131,7 @@ class RegionSelect extends Component {
 			width: 0,
 			height: 0,
 			new: true,
-			data: { index: this.regionCounter },
+			data: { ...this.props.defaultData, index: this.regionCounter },
 			isChanging: true
 		};
 		this.regionCounter += 1;
@@ -282,7 +282,8 @@ RegionSelect.propTypes = {
 	debug: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object,
-	regionStyle: PropTypes.object
+	regionStyle: PropTypes.object,
+	defaultData: PropTypes.object
 };
 RegionSelect.defaultProps = {
 	maxRegions: Infinity,
