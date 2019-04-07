@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types'; 
+import { PropTypes } from 'prop-types';
 import objectAssign from 'object-assign';
 import Region from './Region';
 import style from './style';
@@ -116,6 +116,9 @@ class RegionSelect extends Component {
 		}
 	}
 	onComponentMouseTouchDown (event) {
+		if (this.props.disabled) {
+			return;
+		}
 		if (event.target.dataset.wrapper || event.target.dataset.dir || isSubElement(event.target, (el) => el.dataset && el.dataset.wrapper)) {
 			return;
 		}
@@ -280,6 +283,7 @@ RegionSelect.propTypes = {
 	regionRenderer: PropTypes.func,
 	maxRegions: PropTypes.number,
 	debug: PropTypes.bool,
+	disabled: PropTypes.bool,
 	className: PropTypes.string,
 	style: PropTypes.object,
 	regionStyle: PropTypes.object,
