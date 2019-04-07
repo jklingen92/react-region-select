@@ -175,6 +175,9 @@ class RegionSelect extends Component {
 		if (!event.target.dataset.wrapper && !event.target.dataset.dir) {
 			return;
 		}
+		if (this.props.disabled) {
+			return;
+		}
 		event.preventDefault();
 
 		const clientPos = this.getClientPos(event);
