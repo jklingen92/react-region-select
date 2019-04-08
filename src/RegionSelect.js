@@ -91,7 +91,6 @@ class RegionSelect extends Component {
 			height: height,
 			isChanging: true
 		};
-		console.log(rect)
 		this.props.onChange([
 			...this.props.regions.slice(0, index),
 			objectAssign({}, updatingRegion, rect),
