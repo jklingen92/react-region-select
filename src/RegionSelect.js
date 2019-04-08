@@ -300,7 +300,7 @@ RegionSelect.defaultProps = {
 	regions: [],
 	constraint: false,
 	disabled: false,
-	regionComponent: Region,
+	regionElement: Region,
 	defaultData: null,
 };
 
