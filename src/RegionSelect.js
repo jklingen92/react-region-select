@@ -92,18 +92,11 @@ class RegionSelect extends Component {
 			isChanging: true
 		};
 		console.log(rect)
-		if (width >= this.props.minWidth && height >= this.props.minHeight && width <= this.props.maxWidth && height <= this.props.maxHeight) {
-			this.props.onChange([
-				...this.props.regions.slice(0, index),
-				objectAssign({}, updatingRegion, rect),
-				...this.props.regions.slice(index + 1)
-			]);
-		} else {
-			this.props.onChange([
-				...this.props.regions.slice(0, index),
-				...this.props.regions.slice(index + 1)
-			]);
-		}
+		this.props.onChange([
+			...this.props.regions.slice(0, index),
+			objectAssign({}, updatingRegion, rect),
+			...this.props.regions.slice(index + 1)
+		]);
 	}
 	onDocMouseTouchEnd () {
 		if (this.isChanging) {
@@ -116,12 +109,23 @@ class RegionSelect extends Component {
 			};
 			this.regionChangeIndex = null;
 			this.regionChangeData = null;
-			this.props.onChange([
-				...this.props.regions.slice(0, index),
-				objectAssign({}, updatingRegion, changes),
-				...this.props.regions.slice(index + 1)
-			]);
+			if (updatingRegion.width >= this.props.minWidth
+				&& updatingRegion.height >= this.props.minHeight
+				&& updatingRegion.width <= this.props.maxWidth
+				&& updatingRegion.height <= this.props.maxHeight) {
+				this.props.onChange([
+					...this.props.regions.slice(0, index),
+					objectAssign({}, updatingRegion, changes),
+					...this.props.regions.slice(index + 1)
+				]);
+			} else {
+				this.props.onChange([
+					...this.props.regions.slice(0, index),
+					...this.props.regions.slice(index + 1)
+				]);
+			}
 		}
+
 	}
 	onComponentMouseTouchDown (event) {
 		if (this.props.disabled) {
