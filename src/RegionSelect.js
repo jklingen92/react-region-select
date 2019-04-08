@@ -56,12 +56,15 @@ class RegionSelect extends Component {
 
 		let x, y, width, height;
 		if (!regionChangeData.isMove) {
-			console.log('isMove')
 			let x1Pc, y1Pc, x2Pc, y2Pc;
 			x1Pc = (regionChangeData.clientPosXStart - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y1Pc = (regionChangeData.clientPosYStart - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
 			x2Pc = (clientPos.x - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y2Pc = (clientPos.y - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
+			console.log(x1Pc);
+			console.log(y1Pc);
+			console.log(x2Pc);
+			console.log(y2Pc);
 			x = Math.min(x1Pc, x2Pc);
 			y = Math.min(y1Pc, y2Pc);
 			width = Math.abs(x1Pc - x2Pc);
