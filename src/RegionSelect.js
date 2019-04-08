@@ -56,6 +56,7 @@ class RegionSelect extends Component {
 
 		let x, y, width, height;
 		if (!regionChangeData.isMove) {
+			console.log('isMove')
 			let x1Pc, y1Pc, x2Pc, y2Pc;
 			x1Pc = (regionChangeData.clientPosXStart - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y1Pc = (regionChangeData.clientPosYStart - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
@@ -72,6 +73,7 @@ class RegionSelect extends Component {
 				if (y2Pc <= 0) { y = 0; height = y1Pc; }
 			}
 		} else {
+			console.log('not is Move')
 			x = (clientPos.x + regionChangeData.clientPosXOffset - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y = (clientPos.y + regionChangeData.clientPosYOffset - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
 			width = updatingRegion.width;
