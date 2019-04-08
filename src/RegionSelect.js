@@ -61,10 +61,6 @@ class RegionSelect extends Component {
 			y1Pc = (regionChangeData.clientPosYStart - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
 			x2Pc = (clientPos.x - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y2Pc = (clientPos.y - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
-			console.log(x1Pc);
-			console.log(y1Pc);
-			console.log(x2Pc);
-			console.log(y2Pc);
 			x = Math.min(x1Pc, x2Pc);
 			y = Math.min(y1Pc, y2Pc);
 			width = Math.abs(x1Pc - x2Pc);
@@ -76,7 +72,6 @@ class RegionSelect extends Component {
 				if (y2Pc <= 0) { y = 0; height = y1Pc; }
 			}
 		} else {
-			console.log('not is Move')
 			x = (clientPos.x + regionChangeData.clientPosXOffset - regionChangeData.imageOffsetLeft) / regionChangeData.imageWidth * 100;
 			y = (clientPos.y + regionChangeData.clientPosYOffset - regionChangeData.imageOffsetTop) / regionChangeData.imageHeight * 100;
 			width = updatingRegion.width;
@@ -96,6 +91,7 @@ class RegionSelect extends Component {
 			height: height,
 			isChanging: true
 		};
+		if (width < this.props.minWidth || height < this.props.minHeight || width > this.props.maxWidth || height < this.props.maxHeight)
 		this.props.onChange([
 			...this.props.regions.slice(0, index),
 			objectAssign({}, updatingRegion, rect),
@@ -297,7 +293,11 @@ RegionSelect.propTypes = {
 	className: PropTypes.string,
 	style: PropTypes.object,
 	regionStyle: PropTypes.object,
-	defaultData: PropTypes.object
+	defaultData: PropTypes.object,
+	minWidth: PropTypes.number,
+	minHeight: PropTypes.number,
+	maxWidth: PropTypes.number,
+	maxHeight: PropTypes.number,
 };
 RegionSelect.defaultProps = {
 	maxRegions: Infinity,
@@ -307,6 +307,10 @@ RegionSelect.defaultProps = {
 	disabled: false,
 	regionElement: Region,
 	defaultData: null,
+	minWidth: 0.1,
+	minHeight: 0.1,
+	maxWidth: Infinity,
+	maxHeight: Infinity,
 };
 
 function isSubElement (el, check) {
