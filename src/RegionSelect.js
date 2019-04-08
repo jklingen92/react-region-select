@@ -232,7 +232,7 @@ class RegionSelect extends Component {
 		this.regionChangeIndex = index;
 	}
 	renderRect (rect, index) {
-		const Region = this.props.regionComponent;
+		const Region = this.props.regionElement;
 		return <Region
 			x={rect.x}
 			y={rect.y}
