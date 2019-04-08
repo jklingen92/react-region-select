@@ -91,14 +91,18 @@ class RegionSelect extends Component {
 			height: height,
 			isChanging: true
 		};
+		console.log(rect)
 		if (width >= this.props.minWidth && height >= this.props.minHeight && width <= this.props.maxWidth && height <= this.props.maxHeight) {
-			console.log('test')
-			console.log(rect)
-			// this.props.onChange([
-			// 	...this.props.regions.slice(0, index),
-			// 	objectAssign({}, updatingRegion, rect),
-			// 	...this.props.regions.slice(index + 1)
-			// ]);
+			this.props.onChange([
+				...this.props.regions.slice(0, index),
+				objectAssign({}, updatingRegion, rect),
+				...this.props.regions.slice(index + 1)
+			]);
+		} else {
+			this.props.onChange([
+				...this.props.regions.slice(0, index),
+				...this.props.regions.slice(index + 1)
+			]);
 		}
 	}
 	onDocMouseTouchEnd () {
