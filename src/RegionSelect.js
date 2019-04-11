@@ -11,7 +11,6 @@ class RegionSelect extends Component {
 		this.onDocMouseTouchMove = this.onDocMouseTouchMove.bind(this);
 		this.onDocMouseTouchEnd = this.onDocMouseTouchEnd.bind(this);
 		this.onRegionMoveStart = this.onRegionMoveStart.bind(this);
-		this.regionCounter = 0;
 	}
 	componentDidMount() {
 		document.addEventListener('mousemove', this.onDocMouseTouchMove);
@@ -145,10 +144,9 @@ class RegionSelect extends Component {
 			width: 0,
 			height: 0,
 			new: true,
-			data: { ...this.props.defaultData, index: this.regionCounter },
+			data: { ...this.props.defaultData },
 			isChanging: true
 		};
-		this.regionCounter += 1;
 		this.regionChangeData = {
 			imageOffsetLeft: imageOffset.left,
 			imageOffsetTop: imageOffset.top,
