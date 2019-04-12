@@ -242,6 +242,7 @@ class RegionSelect extends Component {
 	}
 	renderRect (rect, index) {
 		const Region = this.props.regionElement;
+		const regionProps = this.props.regionProps
 		return <Region
 			x={rect.x}
 			y={rect.y}
@@ -255,6 +256,7 @@ class RegionSelect extends Component {
 			dataRenderer={this.props.regionRenderer}
 			onCropStart={(event) => this.onRegionMoveStart(event, index)}
 			changing={index === this.regionChangeIndex}
+			{...regionProps}
 		/>;
 	}
 	render () {
@@ -295,6 +297,7 @@ RegionSelect.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	regionRenderer: PropTypes.func,
 	regionElement: PropTypes.element,
+	regionProps: PropTypes.object,
 	maxRegions: PropTypes.number,
 	debug: PropTypes.bool,
 	disabled: PropTypes.bool,
@@ -314,6 +317,7 @@ RegionSelect.defaultProps = {
 	constraint: false,
 	disabled: false,
 	regionElement: Region,
+	regionProps: null,
 	defaultData: null,
 	minWidth: 0.1,
 	minHeight: 0.1,
